@@ -24,7 +24,7 @@ dependencyManagement {
 
 configurations {
     // for dependencies that are needed for development only
-    developmentOnly 
+    developmentOnly
 }
 
 dependencies {
@@ -50,7 +50,7 @@ run.classpath += configurations.developmentOnly
 test.classpath += configurations.developmentOnly
 run.jvmArgs('-noverify', '-XX:TieredStopAtLevel=1')
 
-mainClassName = "books.Application"
+mainClassName = "example.micronaut.books.Application"
 // use JUnit 5 platform
 test {
     useJUnitPlatform()

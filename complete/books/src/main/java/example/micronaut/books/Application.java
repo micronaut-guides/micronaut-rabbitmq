@@ -1,4 +1,4 @@
-package books;
+package example.micronaut.books;
 
 import io.micronaut.runtime.Micronaut;
 
