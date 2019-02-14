@@ -1,0 +1,5 @@
+micronaut:
+    application:
+        name: analytics
+jackson:
+    module-scan: false
