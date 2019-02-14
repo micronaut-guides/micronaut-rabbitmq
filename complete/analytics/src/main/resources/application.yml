@@ -1,5 +1,7 @@
 micronaut:
     application:
         name: analytics
+    server:
+        port: 8081
 jackson:
     module-scan: false
