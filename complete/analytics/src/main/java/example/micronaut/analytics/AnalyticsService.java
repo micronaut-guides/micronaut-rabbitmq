@@ -1,4 +1,4 @@
-package analytics;
+package example.micronaut.analytics;
 
 import javax.inject.Singleton;
 import java.util.List;

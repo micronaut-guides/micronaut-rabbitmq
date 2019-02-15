@@ -1,4 +1,4 @@
-package analytics;
+package example.micronaut.analytics;
 
 public class BookAnalytics {
 

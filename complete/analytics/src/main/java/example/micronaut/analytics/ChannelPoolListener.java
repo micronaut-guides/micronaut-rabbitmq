@@ -1,4 +1,4 @@
-package analytics;
+package example.micronaut.analytics;
 
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;

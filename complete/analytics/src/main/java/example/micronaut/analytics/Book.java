@@ -1,4 +1,4 @@
-package analytics;
+package example.micronaut.analytics;
 
 import java.util.Objects;
 

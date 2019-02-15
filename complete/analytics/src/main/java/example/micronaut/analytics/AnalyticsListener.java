@@ -1,4 +1,4 @@
-package analytics;
+package example.micronaut.analytics;
 
 import io.micronaut.configuration.rabbitmq.annotation.Queue;
 import io.micronaut.configuration.rabbitmq.annotation.RabbitListener;

@@ -1,4 +1,4 @@
-package analytics;
+package example.micronaut.analytics;
 
 import io.micronaut.runtime.Micronaut;
 
