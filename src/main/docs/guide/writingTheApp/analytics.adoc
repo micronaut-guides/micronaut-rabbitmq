@@ -1,0 +1,83 @@
+Create the `analytics` microservice:
+
+`mn create-app example.micronaut.analytics.analytics`
+
+To keep this guide simple there is no database persistence and the books analytics is kept in memory in `AnalyticsService`
+
+[source,java]
+.analytics/src/main/java/example/micronaut/analytics/AnalyticsService.java
+----
+include::{sourceDir}/analytics/src/main/java/example/micronaut/analytics/AnalyticsService.java[]
+----
+<1> Keep the books analytics in memory.
+<2> Initialized and update the analytics for the book passes as parameter.
+<3> Return all the analytics.
+
+The previous services responds a `List<BookAnalytics>`. Create the `BookAnalytics` POJO:
+
+[source,java]
+.analytics/src/main/java/example/micronaut/analytics/BookAnalytics.java
+----
+include::{sourceDir}/analytics/src/main/java/example/micronaut/analytics/BookAnalytics.java[]
+----
+
+Write a test:
+
+[source,java]
+.analytics/src/test/java/example/micronaut/analytics/AnalyticsServiceTest.java
+----
+include::{sourceDir}/analytics/src/test/java/example/micronaut/analytics/AnalyticsServiceTest.java[]
+----
+<1> Starting with Micronaut 1.1.0 `micronaut-test-junit5` is added automatically to `build.gradle` (or `pom.xml`) when
+creating an application with the CLI. For more information take a look https://micronaut-projects.github.io/micronaut-test/latest/guide/index.html[at the documentation].
+<2> Just inject the collaborator and `@MicronautTest` will take care of everything.
+
+Create a Controller to expose the analytics:
+
+[source,java]
+.analytics/src/main/java/example/micronaut/analytics/AnalyticsController.java
+----
+include::{sourceDir}/analytics/src/main/java/example/micronaut/analytics/AnalyticsController.java[]
+----
+<1> Just expose the analytics.
+
+[NOTE]
+====
+The application doesn't expose the method `updateBookAnalytics` created in `AnalyticsService`. This method will be invoked
+when reading messages from RabbitMQ.
+====
+
+
+Run the tests:
+
+[source,bash]
+----
+analytics $ ./gradlew test
+
+> Task :compileJava
+Note: Creating bean classes for 4 type elements
+
+> Task :processResources
+> Task :classes
+
+> Task :compileTestJava
+Note: Creating bean classes for 1 type elements
+
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+
+> Task :test
+
+BUILD SUCCESSFUL in 10s
+4 actionable tasks: 4 executed
+----
+
+Finally edit `application.yml` to run the application on a different port that `books` microservice.
+
+[source,yaml]
+.analytics/src/main/resources/application.yml
+----
+include::{sourceDir}/analytics/src/main/resources/application.yml[tag=port]
+----
+
+<1> Start the Micronaut microservice on port 8081.

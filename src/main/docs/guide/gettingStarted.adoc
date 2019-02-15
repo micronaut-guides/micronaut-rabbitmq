@@ -1,0 +1,8 @@
+In this guide, we are going to create two microservices that will use https://www.rabbitmq.com/[RabbitMQ] to communicate
+each other in an asynchronous and decoupled way.
+
+____
+RabbitMQ is an open-source message-broker software that originally implemented the Advanced Message Queuing Protocol (AMQP)
+and has since been extended with a plug-in architecture to support Streaming Text Oriented Messaging Protocol (STOMP),
+Message Queuing Telemetry Transport (MQTT), and other protocols.
+____

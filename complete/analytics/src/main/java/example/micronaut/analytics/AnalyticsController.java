@@ -14,7 +14,7 @@ public class AnalyticsController {
         this.analyticsService = analyticsService;
     }
 
-    @Get("/")
+    @Get("/") // <1>
     public List<BookAnalytics> listAnalytics() {
         return analyticsService.listAnalytics();
     }

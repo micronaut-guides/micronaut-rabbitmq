@@ -1,7 +1,9 @@
+#tag::port[]
 micronaut:
     application:
         name: analytics
     server:
-        port: 8081
+        port: 8081 # <1>
+#end::port[]
 jackson:
     module-scan: false

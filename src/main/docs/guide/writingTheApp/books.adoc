@@ -1,0 +1,37 @@
+Create the `books` microservice:
+
+`mn create-app example.micronaut.books.books`
+
+The previous command creates a folder named `books` and a Micronaut app inside it with default package:
+ `example.micronaut.books`.
+
+Create a `BookController` class to handle incoming HTTP requests into the `books` microservice:
+
+[source,java]
+.books/src/main/java/example/micronaut/books/BookController.java
+----
+include::{sourceDir}/books/src/main/java/example/micronaut/books/BookController.java[]
+----
+
+<1> The class is defined as a controller with the http://docs.micronaut.io/snapshot/api/io/micronaut/http/annotation/Controller.html[@Controller]
+ annotation mapped to the path `/books`
+<2> Inject `BookService` using constructor injection.
+<3> The `@Get` annotation is used to map the `listAll` method to an HTTP GET request on `/books`.
+<4> The `@Get` annotation is used to map the `findBook` method to an HTTP GET request on `/books/{isbn}`.
+
+The previous controller responds a `List<Book>`. Create the `Book` POJO:
+
+[source,java]
+.books/src/main/java/example/micronaut/books/Book.java
+----
+include::{sourceDir}/books/src/main/java/example/micronaut/books/Book.java[]
+----
+
+To keep this guide simple there is no database persistence and the list of books is kept in memory in `BookService`:
+
+[source,java]
+.books/src/main/java/example/micronaut/books/BookService.java
+----
+include::{sourceDir}/books/src/main/java/example/micronaut/books/BookService.java[]
+----
+

@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 import javax.inject.Inject;
 import java.util.List;
 
-@MicronautTest
+@MicronautTest // <1>
 public class AnalyticsServiceTest {
 
-    @Inject
+    @Inject // <2>
     AnalyticsService analyticsService;
 
     @Test

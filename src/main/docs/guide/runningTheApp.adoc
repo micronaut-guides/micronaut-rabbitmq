@@ -1,0 +1,34 @@
+Run `books` microservice:
+
+[source,bash]
+----
+books $ ./gradlew run
+
+17:54:17.497 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 1261ms. Server Running: http://localhost:8080
+----
+
+
+Run `analytics` microservice:
+
+[source,bash]
+----
+analytics $ ./gradlew run
+
+17:58:57.804 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 1130ms. Server Running: http://localhost:8081
+----
+
+You can run a cURL command to test the application:
+
+[source, bash]
+----
+$ curl http://localhost:8080/books
+[{"isbn":"1491950358","name":"Building Microservices"},{"isbn":"1680502395","name":"Release It!"},{"isbn":"0321601912","name":"Continuous Delivery"}]
+
+$ curl http://localhost:8080/books/1491950358
+{"isbn":"1491950358","name":"Building Microservices"}
+
+$ curl http://localhost:8081/analytics
+[]
+----
+
+Please note that getting the analytics return an empty list because the application are not communicating to each other (yet).
