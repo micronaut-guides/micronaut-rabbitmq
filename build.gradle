@@ -1,0 +1,15 @@
+plugins {
+    id "org.aim42.htmlSanityCheck" version "1.1.0"
+    id "org.asciidoctor.convert" version "1.5.8.1"
+}
+
+asciidoctorj {
+    version = '1.5.6'
+}
+
+apply from:"https://raw.githubusercontent.com/micronaut-projects/micronaut-guides/master/gradle/guide-build.gradle"
+
+htmlSanityCheck {
+    sourceDir = new File("${project.buildDir}/docs")
+}
+publishGuide.finalizedBy(htmlSanityCheck)
