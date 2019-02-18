@@ -39,5 +39,5 @@ include::{sourceDir}/analytics/src/main/java/example/micronaut/analytics/Analyti
 <1> The RabbitMQ listener will not be available for tests.
 <2> Annotate the class with `@RabbitListener` to indicate that this bean will consume messages from RabbitMQ.
 <3> Constructor injection for `AnalyticsService`.
-<4> Annotate the method with `@Queue`. This listener will listen to message in `analytics` queue.
+<4> Annotate the method with `@Queue`. This listener will listen to messages in `analytics` queue.
 <5> Call the previously created method to update the analytics for the book.

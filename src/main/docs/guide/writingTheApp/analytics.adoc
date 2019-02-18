@@ -10,10 +10,10 @@ To keep this guide simple there is no database persistence and the books analyti
 include::{sourceDir}/analytics/src/main/java/example/micronaut/analytics/AnalyticsService.java[]
 ----
 <1> Keep the books analytics in memory.
-<2> Initialized and update the analytics for the book passes as parameter.
+<2> Initialize and update the analytics for the book passed as parameter.
 <3> Return all the analytics.
 
-The previous services responds a `List<BookAnalytics>`. Create the `BookAnalytics` POJO:
+The previous service responds a `List<BookAnalytics>`. Create the `BookAnalytics` POJO:
 
 [source,java]
 .analytics/src/main/java/example/micronaut/analytics/BookAnalytics.java

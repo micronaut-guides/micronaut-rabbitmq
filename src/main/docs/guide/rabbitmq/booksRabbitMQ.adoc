@@ -37,7 +37,7 @@ include::{sourceDir}/books/src/main/java/example/micronaut/books/ChannelPoolList
 <1> Define an exchange named `micronaut`. From the producer point of view everything is sent to the exchange with the
 appropriate routing key
 <2> Define a queue named `analytics`. The consumer will listen for messages in that queue.
-<3> Define a binding between the exchange, the queue with the routing key `analytics`.
+<3> Define a binding between the exchange and the queue using the routing key `analytics`.
 
 
 ### Create RabbitMQ client (producer)
@@ -57,8 +57,8 @@ include::{sourceDir}/books/src/main/java/example/micronaut/books/AnalyticsClient
 ### Send Analytics information automatically
 
 Sending a message to RabbitMQ is as simple as injecting `AnalyticsClient` and calling `updateAnalytics` method. The goal
-is to do it automatically every time a book is returned, i.e., there is a call to `http://localhost:8080/books/{isbn}`.
-The achieve this we are going to create an https://docs.micronaut.io/latest/guide/index.html#filters[Http Server Filter].
+is to do it automatically every time a book is returned, i.e., every time there is a call to `http://localhost:8080/books/{isbn}`.
+To achieve this we are going to create an https://docs.micronaut.io/latest/guide/index.html#filters[Http Server Filter].
 Create the file `AnalyticsFilter.java`:
 
 [source,java]
@@ -66,7 +66,7 @@ Create the file `AnalyticsFilter.java`:
 ----
 include::{sourceDir}/books/src/main/java/example/micronaut/books/AnalyticsFilter.java[]
 ----
-<1> Annotate the class with `@Filter` and define the ANT Matcher pattern to intercept all the call to the desire URI.
+<1> Annotate the class with `@Filter` and define the ANT Matcher pattern to intercept all the calls to the desire URI.
 <2> The class needs to implement `HttpServerFilter`.
 <3> Constructor injection for RabbitMQ `AnalyticsClient`.
 <4> Override `doFilter` method.

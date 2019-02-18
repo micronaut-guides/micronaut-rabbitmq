@@ -31,4 +31,4 @@ $ curl http://localhost:8081/analytics
 []
 ----
 
-Please note that getting the analytics return an empty list because the application are not communicating to each other (yet).
+Please note that getting the analytics returns an empty list because the applications are not communicating to each other (yet).

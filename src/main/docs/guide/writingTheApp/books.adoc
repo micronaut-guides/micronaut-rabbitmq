@@ -27,7 +27,7 @@ The previous controller responds a `List<Book>`. Create the `Book` POJO:
 include::{sourceDir}/books/src/main/java/example/micronaut/books/Book.java[]
 ----
 
-To keep this guide simple there is no database persistence and the list of books is kept in memory in `BookService`:
+To keep this guide simple there is no database persistence and the list of books is kept in memory in `BookService.java`:
 
 [source,java]
 .books/src/main/java/example/micronaut/books/BookService.java
