@@ -25,10 +25,10 @@ public class ChannelPoolListener implements BeanCreatedEventListener<ChannelPool
 
         if (channel != null) {
             try {
-                channel.exchangeDeclare("micronaut", BuiltinExchangeType.DIRECT, true);
+                channel.exchangeDeclare("micronaut", BuiltinExchangeType.DIRECT, true); // <1>
 
-                channel.queueDeclare("analytics", true, false, false, null);
-                channel.queueBind("analytics", "micronaut", "analytics");
+                channel.queueDeclare("analytics", true, false, false, null); // <2>
+                channel.queueBind("analytics", "micronaut", "analytics"); // <3>
             } catch (IOException e) {
                 // no-op
             } finally {

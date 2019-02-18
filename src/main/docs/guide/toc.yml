@@ -7,3 +7,12 @@ writingTheApp:
   books: Books Microservice
   analytics: Analytics Microservice
 runningTheApp: Running the app
+rabbitmq:
+  title: RabbitMQ and Micronaut
+  rabbitmqInstall: Install RabbitMQ via Docker
+  micronautAndRabbitMQ: Integrate RabbitMQ
+  booksRabbitMQ: Books Microservice
+  analyticsRabbitMQ: Analytics Microservice
+  runningTheAppWithRabbitMQ: Running the App
+nextSteps:
+  title: Next Steps

@@ -2,7 +2,7 @@ Create the `analytics` microservice:
 
 `mn create-app example.micronaut.analytics.analytics`
 
-To keep this guide simple there is no database persistence and the books analytics is kept in memory in `AnalyticsService`
+To keep this guide simple there is no database persistence and the books analytics is kept in memory in `AnalyticsService.java`
 
 [source,java]
 .analytics/src/main/java/example/micronaut/analytics/AnalyticsService.java

@@ -17,7 +17,7 @@ analytics $ ./gradlew run
 17:58:57.804 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 1130ms. Server Running: http://localhost:8081
 ----
 
-You can run a cURL command to test the application:
+You can run a `curl` command to test the application:
 
 [source, bash]
 ----

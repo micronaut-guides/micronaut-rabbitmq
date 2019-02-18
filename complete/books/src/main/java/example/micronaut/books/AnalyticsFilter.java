@@ -10,22 +10,22 @@ import org.reactivestreams.Publisher;
 
 import java.util.Optional;
 
-@Filter("/books/?*")
-public class AnalyticsFilter implements HttpServerFilter {
+@Filter("/books/?*") // <1>
+public class AnalyticsFilter implements HttpServerFilter { // <2>
 
-    private final AnalyticsClient analyticsClient;
+    private final AnalyticsClient analyticsClient; // <3>
 
-    public AnalyticsFilter(AnalyticsClient analyticsClient) {
+    public AnalyticsFilter(AnalyticsClient analyticsClient) { // <3>
         this.analyticsClient = analyticsClient;
     }
 
     @Override
-    public Publisher<MutableHttpResponse<?>> doFilter(HttpRequest<?> request, ServerFilterChain chain) {
+    public Publisher<MutableHttpResponse<?>> doFilter(HttpRequest<?> request, ServerFilterChain chain) { // <4>
         return Flowable
-                .fromPublisher(chain.proceed(request))
+                .fromPublisher(chain.proceed(request)) // <5>
                 .doOnNext(response -> {
-                    Optional<Book> book = response.getBody(Book.class);
-                    book.ifPresent(analyticsClient::updateAnalytics);
+                    Optional<Book> book = response.getBody(Book.class); // <6>
+                    book.ifPresent(analyticsClient::updateAnalytics); // <7>
                 });
     }
 }

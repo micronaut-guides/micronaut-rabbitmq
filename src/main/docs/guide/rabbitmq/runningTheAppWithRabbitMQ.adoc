@@ -1,0 +1,51 @@
+Run `books` microservice:
+
+[source,bash]
+----
+books $ ./gradlew run
+
+18:19:02.206 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 1338ms. Server Running: http://localhost:8080
+----
+
+Execute a `curl` request to get one book:
+
+[source, bash]
+----
+$ curl http://localhost:8080/books/1491950358
+{"isbn":"1491950358","name":"Building Microservices"}
+----
+
+Open RabbitMQ Admin UI on `http://localhost:15672` and use `guest` for both username and password. Select `queues` and
+`analytics` queue. You can see that there is a message in the queue.
+
+image::rabbitmq-message.png[]
+
+Expand the "Get messages" option and get one message. You can see all the information: `exchange`, `routing key` and the
+`payload` serialized to json:
+
+image::rabbitmq-message-detail.png[]
+
+
+
+Run `analytics` microservice:
+
+[source,bash]
+----
+analytics $ ./gradlew run
+
+18:24:45.810 [main] INFO  io.micronaut.runtime.Micronaut - Startup completed in 1307ms. Server Running: http://localhost:8081
+----
+
+The application will consume and process the message automatically after the startup. Go to RabbitMQ Admin UI and check
+that the message has been consumed:
+
+image::rabbitmq-message-consumed.png[]
+
+
+Now, run a `curl` to get the analytics:
+
+[source, bash]
+----
+$ curl http://localhost:8081/analytics
+[{"bookIsbn":"1491950358","count":1}]
+----
