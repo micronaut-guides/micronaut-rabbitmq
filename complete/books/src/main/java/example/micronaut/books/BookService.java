@@ -13,7 +13,7 @@ public class BookService {
     private static final List<Book> bookStore = new ArrayList<>();
 
     @PostConstruct
-    private void init() {
+    void init() {
         bookStore.add(new Book("1491950358", "Building Microservices"));
         bookStore.add(new Book("1680502395", "Release It!"));
         bookStore.add(new Book("0321601912", "Continuous Delivery"));
