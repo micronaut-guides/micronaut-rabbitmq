@@ -36,7 +36,7 @@ implement the consume at compile time. Create `AnalyticsListener.java`
 ----
 include::{sourceDir}/analytics/src/main/java/example/micronaut/analytics/AnalyticsListener.java[]
 ----
-<1> The RabbitMQ listener will not be available for tests.
+<1> Do not load this bean for the test environment. This enable us to run the tests without having a RabbitMQ instance running.
 <2> Annotate the class with `@RabbitListener` to indicate that this bean will consume messages from RabbitMQ.
 <3> Constructor injection for `AnalyticsService`.
 <4> Annotate the method with `@Queue`. This listener will listen to messages in `analytics` queue.
