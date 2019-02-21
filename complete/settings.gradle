@@ -1,2 +1,3 @@
+include 'acceptance'
 include 'books'
 include 'analytics'

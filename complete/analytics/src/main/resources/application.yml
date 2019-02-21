@@ -7,3 +7,6 @@ micronaut:
 #end::port[]
 jackson:
     module-scan: false
+endpoints:
+    health:
+        enabled: true

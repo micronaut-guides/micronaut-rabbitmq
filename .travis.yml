@@ -1,3 +1,5 @@
+services:
+  - rabbitmq
 sudo: false
 cache:
   directories:

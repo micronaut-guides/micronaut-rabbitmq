@@ -1,0 +1,27 @@
+plugins {
+    id "io.spring.dependency-management" version "1.0.6.RELEASE"
+}
+
+apply plugin: "groovy"
+
+repositories {
+    mavenLocal()
+    jcenter()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "io.micronaut:micronaut-bom:$micronautVersion"
+    }
+}
+
+dependencies {
+    compile "org.codehaus.groovy:groovy-all:$groovyVersion"
+
+    testCompile("org.spockframework:spock-core:${spockVersion}") {
+        exclude module:'groovy-all'
+    }
+
+    testCompile "io.micronaut:micronaut-runtime-groovy"
+    testCompile "io.micronaut:micronaut-http-client"
+}

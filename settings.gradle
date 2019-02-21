@@ -1,3 +1,4 @@
 include 'complete'
 include 'complete/books'
 include 'complete/analytics'
+include 'complete/acceptance'

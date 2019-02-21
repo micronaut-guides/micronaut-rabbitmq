@@ -3,3 +3,6 @@ micronaut:
         name: books
 jackson:
     module-scan: false
+endpoints:
+    health:
+        enabled: true
