@@ -12,8 +12,13 @@ public class AnalyticsService {
     private final Map<Book, Long> bookAnalytics = new ConcurrentHashMap<>(); // <1>
 
     public void updateBookAnalytics(Book book) { // <2>
-        bookAnalytics.computeIfPresent(book, (k, v) -> v + 1);
-        bookAnalytics.putIfAbsent(book, 1L);
+        bookAnalytics.compute(book, (b, v) -> {
+            if (v == null) {
+                return 1L;
+            } else {
+                return v + 1;
+            }
+        });
     }
 
     public List<BookAnalytics> listAnalytics() { // <3>
