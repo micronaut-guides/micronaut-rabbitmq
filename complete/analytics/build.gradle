@@ -42,6 +42,9 @@ dependencies {
     compile 'io.micronaut.configuration:micronaut-rabbitmq:1.1.0.M2'
     //end::rabbitmq[]
 
+    compileOnly "com.oracle.substratevm:svm"
+    runtime "io.micronaut:micronaut-graal"
+
     runtime "ch.qos.logback:logback-classic:1.2.3"
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
     testCompile "org.junit.jupiter:junit-jupiter-api"
