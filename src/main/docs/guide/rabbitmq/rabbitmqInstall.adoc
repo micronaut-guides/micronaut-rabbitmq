@@ -3,9 +3,9 @@ The fastest way to start using https://hub.docker.com/_/rabbitmq/[RabbitMQ is vi
 [source,bash]
 ----
 docker run --rm -it \
-        --network=host \ # <1>
+        -p 5672:5672 \
+        -p 15672:15672 \
         rabbitmq:3.7.11-management
 ----
-<1> Instead of manually expose all the necessary ports we just use the same network as the host
 
 Alternatively you can https://www.rabbitmq.com/download.html[install and run a local RabbitMQ instance].
