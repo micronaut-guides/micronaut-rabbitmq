@@ -1,6 +1,6 @@
 services:
   - rabbitmq
-sudo: false
+dist: trusty
 cache:
   directories:
   - "$HOME/.gradle"
