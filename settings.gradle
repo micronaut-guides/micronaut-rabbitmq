@@ -1,4 +1,4 @@
 include 'complete'
-include 'complete/books'
-include 'complete/analytics'
-include 'complete/acceptance'
+include 'complete:books'
+include 'complete:analytics'
+include 'complete:acceptance'

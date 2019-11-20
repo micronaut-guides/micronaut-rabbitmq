@@ -1,27 +1,21 @@
 plugins {
-    id "io.spring.dependency-management" version "1.0.6.RELEASE"
+    id "groovy"
 }
 
-apply plugin: "groovy"
-
 repositories {
-    mavenLocal()
+    mavenCentral()
     jcenter()
 }
 
-dependencyManagement {
-    imports {
-        mavenBom "io.micronaut:micronaut-bom:$micronautVersion"
-    }
-}
-
 dependencies {
-    compile "org.codehaus.groovy:groovy-all:$groovyVersion"
+    implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
+    implementation 'org.codehaus.groovy:groovy-all:2.5.2'
 
-    testCompile("org.spockframework:spock-core:${spockVersion}") {
-        exclude module:'groovy-all'
-    }
+    testImplementation platform("io.micronaut:micronaut-bom:$micronautVersion")
+    testImplementation 'org.spockframework:spock-core:1.2-groovy-2.5'
 
-    testCompile "io.micronaut:micronaut-runtime-groovy"
-    testCompile "io.micronaut:micronaut-http-client"
+    testImplementation "io.micronaut:micronaut-runtime-groovy"
+    testImplementation "io.micronaut:micronaut-http-client"
 }
+
+apply from: "${rootProject.projectDir}/gradle/testVerbose.gradle"
