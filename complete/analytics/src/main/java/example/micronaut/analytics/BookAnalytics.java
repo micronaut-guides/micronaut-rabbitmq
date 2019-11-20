@@ -1,5 +1,8 @@
 package example.micronaut.analytics;
 
+import io.micronaut.core.annotation.Introspected;
+
+@Introspected
 public class BookAnalytics {
 
     private String bookIsbn;
