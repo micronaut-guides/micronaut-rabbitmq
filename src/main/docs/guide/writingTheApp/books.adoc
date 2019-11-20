@@ -13,7 +13,7 @@ Create a `BookController` class to handle incoming HTTP requests into the `books
 include::{sourceDir}/books/src/main/java/example/micronaut/books/BookController.java[]
 ----
 
-<1> The class is defined as a controller with the http://docs.micronaut.io/snapshot/api/io/micronaut/http/annotation/Controller.html[@Controller]
+<1> The class is defined as a controller with the http://docs.micronaut.io/latest/api/io/micronaut/http/annotation/Controller.html[@Controller]
  annotation mapped to the path `/books`
 <2> Inject `BookService` using constructor injection.
 <3> The `@Get` annotation is used to map the `listAll` method to an HTTP GET request on `/books`.
