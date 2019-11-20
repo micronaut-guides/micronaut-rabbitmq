@@ -3,13 +3,13 @@ set -e
 
 export EXIT_STATUS=0
 
-./gradlew --console=plain complete/books:test || EXIT_STATUS=$?
+./gradlew --console=plain complete:books:test || EXIT_STATUS=$?
 
 if [[ $EXIT_STATUS -ne 0 ]]; then
   exit $EXIT_STATUS
 fi
 
-./gradlew --console=plain complete/analytics:test || EXIT_STATUS=$?
+./gradlew --console=plain complete:analytics:test || EXIT_STATUS=$?
 
 if [[ $EXIT_STATUS -ne 0 ]]; then
   exit $EXIT_STATUS
