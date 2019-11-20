@@ -1,13 +1,5 @@
 package example.micronaut.books;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
-
 import io.micronaut.context.annotation.Primary;
 import io.micronaut.core.type.Argument;
 import io.micronaut.http.HttpRequest;
@@ -22,6 +14,14 @@ import org.mockito.Mockito;
 import javax.inject.Inject;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
+
 @MicronautTest
 public class BookControllerTest {
 
@@ -34,7 +34,7 @@ public class BookControllerTest {
 
     @Test
     void testMessageIsPublishedToRabbitMQWhenBookFound() {
-        Optional<Book> result = client.toBlocking().retrieve(HttpRequest.GET("/books/1491950358"), Argument.of(Optional.class, Book.class));
+        Optional<Book> result = retrieveGet("/books/1491950358");
 
         assertNotNull(result);
         assertTrue(result.isPresent());
@@ -45,19 +45,23 @@ public class BookControllerTest {
     @Test
     void testMessageIsNotPublishedToRabbitMQWhenBookNotFound() {
         assertThrows(HttpClientResponseException.class, () -> {
-            Optional<Book> result = client.toBlocking().retrieve(HttpRequest.GET("/books/INVALID"), Argument.of(Optional.class, Book.class));
+            Optional<Book> result = retrieveGet("/books/INVALID");
 
             assertNotNull(result);
             assertFalse(result.isPresent());
         });
 
-        verifyZeroInteractions(analyticsClient);
+        verifyNoInteractions(analyticsClient);
     }
 
     @Primary
     @MockBean
     AnalyticsClient analyticsClient() {
         return Mockito.mock(AnalyticsClient.class);
+    }
+
+    private Optional<Book> retrieveGet(String url) {
+        return client.toBlocking().retrieve(HttpRequest.GET(url), Argument.of(Optional.class, Book.class));
     }
 
 }
