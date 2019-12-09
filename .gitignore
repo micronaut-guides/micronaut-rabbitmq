@@ -6,3 +6,5 @@ build
 out/
 .settings
 .project
+complete/books/books
+complete/analytics/analytics
