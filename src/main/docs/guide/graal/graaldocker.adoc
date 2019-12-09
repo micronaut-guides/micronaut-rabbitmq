@@ -1,0 +1,44 @@
+Alternatively, you can use Docker to construct the GraalVM Native Image.
+
+## Changes to books to generate a GraalVM native image with Docker
+
+Replace `books/Dockerfile` with this content:
+
+[source, bash]
+----
+include::{sourceDir}/books/Dockerfile[]
+----
+
+Add a script `docker-build.sh to run it:
+
+[source, bash]
+----
+include::{sourceDir}/books/docker-build.sh[]
+----
+
+## Changes to analytics to generate a GraalVM native image with Docker
+
+Replace `analytics/Dockerfile` with this content:
+
+[source, bash]
+----
+include::{sourceDir}/analytics/Dockerfile[]
+----
+
+Add a script `docker-build.sh to run it:
+
+[source, bash]
+----
+include::{sourceDir}/analytics/docker-build.sh[]
+----
+
+## Running native images with docker
+
+You can use docker to run the images:
+
+[source, bash]
+----
+$ docker run -p 8080:8080 books
+$ docker run -p 8081:8081 analytics
+----
+

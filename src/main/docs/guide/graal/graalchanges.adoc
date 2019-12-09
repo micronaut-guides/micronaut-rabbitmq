@@ -1,0 +1,55 @@
+Micronaut itself does not rely on reflection or dynamic classloading so works automatically with GraalVM native.
+____
+
+GraalVM Native Image allows you to ahead-of-time compile Java code to a standalone executable, called a native image. This executable includes the application, the libraries, the JDK and does not run on the Java VM, but includes necessary components like memory management and thread scheduling from a different virtual machine, called “Substrate VM”. Substrate VM is the name for the runtime components (like the deoptimizer, garbage collector, thread scheduling etc.). The resulting program has faster startup time and lower runtime memory overhead compared to a Java VM.
+____
+
+We are going to add Micronaut Graal’s annotation processor and `svm` to both application builds. It helps to handle generating the `reflection-config.json` metadata that is automatically picked up by the native-image tool.
+
+Also, to simplify building the image you need to create a `native-image.properties` file. The convention is to use the folder `src/main/resources/META-INF/native-image` and then a folder following the maven coordinates of the application.
+
+
+## Changes to books to generate a GraalVM native image
+
+
+Modify `books/build.gradle`, add the annotation processor and `svm` dependency:
+
+[source, groovy]
+.books/build.gradle
+----
+include::{sourceDir}/books/build.gradle[tag=micronaut-graal]
+include::{sourceDir}/books/build.gradle[tag=svm]
+----
+
+Add a `native-image.properties` inside `src/main/resources/META-INF/native-image/example.micronaut/books` folder.
+
+[source, bash]
+.src/main/resources/META-INF/native-image/example.micronaut/books/native-image.properties
+----
+include::{sourceDir}/books/src/main/resources/META-INF/native-image/example.micronaut/books/native-image.properties[]
+----
+
+<1> The `-H:IncludeResources` argument allows you to tweak which static resources to include. You can use regular expressions.
+
+<2> The `-H:Name` argument specifies the name of the native image that will be generated.
+
+<3> The `-H:Class` argument specifies the entry point of your application (the class that defines a static void main method).
+
+## Changes to analytics to generate a GraalVM native image
+
+Modify `analytics/build.gradle`, add the annotation processor and `svm` dependency:
+
+[source, groovy]
+.analytics/build.gradle
+----
+include::{sourceDir}/analytics/build.gradle[tag=micronaut-graal]
+include::{sourceDir}/analytics/build.gradle[tag=svm]
+----
+
+Add a `native-image.properties` inside `src/main/resources/META-INF/native-image/example.micronaut/analytics` folder.
+
+[source, bash]
+.src/main/resources/META-INF/native-image/example.micronaut/analytics/native-image.properties
+----
+include::{sourceDir}/analytics/src/main/resources/META-INF/native-image/example.micronaut/analytics/native-image.properties[]
+----

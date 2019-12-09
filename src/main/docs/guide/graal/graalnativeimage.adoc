@@ -1,0 +1,66 @@
+include::{commondir}/common-graal-install.adoc[]
+
+## Generate GraalVM native image for analytics
+
+To generate the native image you need to generate the FAT JAR first.
+
+[source, bash]
+----
+analytics $ ./gradlew assemble
+----
+
+Invoke native-image. It may take a minute to complete.
+
+[source, bash]
+----
+userecho $ native-image --no-server -cp build/libs/analytics-0.1-all.jar
+[userecho:14552]    classlist:   8,403.72 ms
+[userecho:14552]        (cap):   2,196.75 ms
+[userecho:14552]        setup:   3,163.33 ms
+[userecho:14552]   (typeflow):  14,912.31 ms
+[userecho:14552]    (objects):  17,479.74 ms
+[userecho:14552]   (features):   2,182.07 ms
+[userecho:14552]     analysis:  36,708.00 ms
+[userecho:14552]     (clinit):   1,147.36 ms
+[userecho:14552]     universe:   2,441.84 ms
+[userecho:14552]      (parse):   1,114.89 ms
+[userecho:14552]     (inline):   2,769.22 ms
+[userecho:14552]    (compile):  13,846.04 ms
+[userecho:14552]      compile:  19,961.65 ms
+[userecho:14552]        image:   3,631.87 ms
+[userecho:14552]        write:   1,139.84 ms
+[userecho:14552]      [total]:  75,733.82 ms
+----
+`--no-server` options tells to not use server-based image building.
+
+## Generate GraalVM native image for books
+
+[source, bash]
+----
+books $ ./gradlew assemble
+----
+
+[source, bash]
+----
+gateway $ native-image --no-server -cp build/libs/books-0.1-all.jar
+[gateway:14380]    classlist:   4,769.83 ms
+[gateway:14380]        (cap):   2,178.91 ms
+[gateway:14380]        setup:   3,102.47 ms
+[gateway:14380]   (typeflow):  13,167.91 ms
+[gateway:14380]    (objects):  17,513.79 ms
+[gateway:14380]   (features):   2,323.89 ms
+[gateway:14380]     analysis:  35,342.33 ms
+[gateway:14380]     (clinit):   1,119.21 ms
+[gateway:14380]     universe:   2,471.35 ms
+[gateway:14380]      (parse):   2,535.37 ms
+[gateway:14380]     (inline):   2,379.36 ms
+[gateway:14380]    (compile):  14,645.46 ms
+[gateway:14380]      compile:  21,854.85 ms
+[gateway:14380]        image:   5,309.31 ms
+[gateway:14380]        write:   1,257.64 ms
+[gateway:14380]      [total]:  74,390.31 ms
+----
+
+`--no-server` options tells to not use server-based image building.
+
+
