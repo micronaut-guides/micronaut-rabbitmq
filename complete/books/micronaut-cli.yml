@@ -1,5 +1,5 @@
 profile: service
-defaultPackage: books
+defaultPackage: example.micronaut.books
 ---
 testFramework: junit
 sourceLanguage: java
