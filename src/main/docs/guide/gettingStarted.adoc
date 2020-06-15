@@ -1,3 +1,5 @@
+include::{commondir}/common-micronautonex.adoc[]
+
 In this guide, we are going to create two microservices that will use https://www.rabbitmq.com/[RabbitMQ] to communicate
 each other in an asynchronous and decoupled way.
 
