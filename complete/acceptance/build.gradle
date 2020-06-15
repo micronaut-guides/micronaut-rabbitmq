@@ -3,19 +3,26 @@ plugins {
 }
 
 repositories {
-    mavenCentral()
     jcenter()
+    maven { url "https://oss.jfrog.org/oss-snapshot-local" }
 }
 
 dependencies {
-    implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
-    implementation 'org.codehaus.groovy:groovy-all:2.5.2'
+    compileOnly(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
+    compileOnly("io.micronaut:micronaut-inject-groovy")
+    implementation("io.micronaut.groovy:micronaut-runtime-groovy")
 
-    testImplementation platform("io.micronaut:micronaut-bom:$micronautVersion")
-    testImplementation 'org.spockframework:spock-core:1.2-groovy-2.5'
-
-    testImplementation "io.micronaut:micronaut-runtime-groovy"
+    testImplementation(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
+    testImplementation("org.spockframework:spock-core") {
+        exclude group: "org.codehaus.groovy", module: "groovy-all"
+    }
     testImplementation "io.micronaut:micronaut-http-client"
 }
+
+// use JUnit 5 platform
+test {
+    useJUnitPlatform()
+}
+
 
 apply from: "${rootProject.projectDir}/gradle/testVerbose.gradle"

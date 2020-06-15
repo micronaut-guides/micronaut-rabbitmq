@@ -1,7 +1,7 @@
 package example.micronaut.books;
 
-import io.micronaut.configuration.rabbitmq.annotation.Binding;
-import io.micronaut.configuration.rabbitmq.annotation.RabbitClient;
+import io.micronaut.rabbitmq.annotation.Binding;
+import io.micronaut.rabbitmq.annotation.RabbitClient;
 
 @RabbitClient("micronaut") // <1>
 public interface AnalyticsClient {

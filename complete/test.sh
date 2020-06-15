@@ -15,9 +15,9 @@ echo "Starting services"
 ./gradlew run -parallel --console=plain &
 PID1=$!
 
-echo "Waiting 10 seconds for microservices to start"
+echo "Waiting 5 seconds for microservices to start"
 
-sleep 10
+sleep 5
 
 ./gradlew :acceptance:test --rerun-tasks --console=plain || EXIT_STATUS=$?
 

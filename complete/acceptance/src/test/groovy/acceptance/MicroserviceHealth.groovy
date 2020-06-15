@@ -20,8 +20,8 @@ trait MicroserviceHealth {
                 return true
             }
         } catch (HttpClientException e) {
+            println "HTTP Client exception for $microservicesUrl $e.message"
         }
         return false
-
     }
 }

@@ -15,7 +15,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @Get("/") // <3>
+    @Get // <3>
     public List<Book> listAll() {
         return bookService.listAll();
     }
