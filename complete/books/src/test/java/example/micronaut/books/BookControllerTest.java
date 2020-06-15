@@ -37,7 +37,7 @@ public class BookControllerTest {
         Optional<Book> result = retrieveGet("/books/1491950358");
 
         assertNotNull(result);
-        assertTrue(false);//result.isPresent());
+        assertTrue(result.isPresent());
 
         verify(analyticsClient, times(1)).updateAnalytics(result.get());
     }
